@@ -1,3 +1,6 @@
+This is a fork! The toDisk method of the original was removed for browser use in React
+https://github.com/anton-bot/objects-to-csv
+
 # Convert array of objects into a CSV file #
 
 Converts an array of JavaScript objects into the CSV format. You can
