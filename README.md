@@ -23,8 +23,8 @@ const data = [
 (async () => {
   const csv = new ObjectsToCsv(data);
 
-  // Save to file:
-  await csv.toDisk('./test.csv');
+  // Save to file: (This only works with the original objects-to-csv, removed here for browser use in React)
+  // await csv.toDisk('./test.csv');
 
   // Return the CSV file as string:
   console.log(await csv.toString());
@@ -33,45 +33,7 @@ const data = [
 
 ## Methods ##
 
-There are two methods, `toDisk(filename)` and `toString()`.
-
-### async toDisk(filename, options) ###
-
-Converts the data and saves the CSV file to disk. The `filename` must include the
-path as well.
-
-The `options` is an optional parameter which is an object that contains the 
-settings. Supported options:
-
-- `append` - whether to append to the file. Default is `false` (overwrite the file).
-Set to `true` to append. Column names will be added only once at the beginning
-of the file. If the file does not exist, it will be created.
-- `bom` - whether to add the Unicode Byte Order Mark at the beginning of the
-file. Default is `false`; set to `true` to be able to view Unicode in Excel
-properly. Otherwise Excel will display Unicode incorrectly.
-- `allColumns` - whether to check all array items for keys to convert to columns rather 
-than only the first. This will sort the columns alphabetically. Default is `false`;
-set to `true` to check all items for potential column names.
-
-```js
-const ObjectsToCsv = require('objects-to-csv');
-const sampleData = [{ id: 1, text: 'this is a test' }];
-
-// Run asynchronously, without awaiting:
-new ObjectsToCsv(sampleData).toDisk('./test.csv');
-
-// Alternatively, you can append to the existing file:
-new ObjectsToCsv(sampleData).toDisk('./test.csv', { append: true });
-
-// `allColumns: true` collects column names from all objects in the array,
-// instead of only using the first one. In this case the CSV file will
-// contain three columns:
-const mixedData = [
-  { id: 1, name: 'California' },
-  { id: 2, description: 'A long description.' },
-];
-new ObjectsToCsv(mixedData).toDisk('./test.csv', { allColumns: true });
-```
+There is one method, `toString()`.
 
 ### async toString(header = true, allColumns = false) ###
 
